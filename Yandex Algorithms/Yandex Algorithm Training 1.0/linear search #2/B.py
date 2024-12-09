@@ -1,41 +1,45 @@
-def solution(res):
-    is_constant = True
-    is_ascending = True
-    is_weakly_ascending = True
-    is_descending = True
-    is_weakly_descending = True
+import sys
 
+def sol(res):
+
+    is_const = True #1
+    is_asc = True #2
+    is_w_asc = True #3
+    is_desc = True
+    is_w_desc = True 
+    
     for i in range(1, len(res)):
-        if res[i] != res[i - 1]:
-            is_constant = False
-        if res[i] < res[i - 1]:
-            is_weakly_ascending = False
-        if res[i] <= res[i - 1]:
-            is_ascending = False
-        if res[i] > res[i - 1]:
-            is_weakly_descending = False
-        if res[i] >= res[i - 1]:
-            is_descending = False
+        if res[i-1] != res[i]: #1
+            is_const = False
+        if res[i-1] >= res[i]: #2
+            is_asc = False
+        if res[i-1] > res[i]:
+            is_w_asc = False
+        if res[i-1] <= res[i]:
+            is_desc = False
+        if res[i-1] < res[i]:
+            is_w_desc = False
 
-    if is_constant:
+    if is_const:
         return "CONSTANT"
-    if is_ascending:
+    if is_asc:
         return "ASCENDING"
-    if is_weakly_ascending:
+    if is_w_asc:
         return "WEAKLY ASCENDING"
-    if is_descending:
+    if is_desc:
         return "DESCENDING"
-    if is_weakly_descending:
+    if is_w_desc:
         return "WEAKLY DESCENDING"
-    return "RANDOM"
-
-
-
-res = []
-while True:
-    user = int(input())
-    if user == -2 * 10**9: 
-        break
-    res.append(user)
-
-print(solution(res))
+        
+    return "RANDOM" 
+def main():
+    res = []
+    
+    while True:
+        n = int(input())
+        if n == -2000000000:
+            break
+        res.append(n)
+    print(sol(res))
+if __name__ == '__main__':
+    main()
